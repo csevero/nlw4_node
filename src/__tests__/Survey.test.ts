@@ -1,23 +1,9 @@
 import request from "supertest";
-import { getConnection, getCustomRepository } from "typeorm";
 import { server } from "../app";
-import createConnection from "../database";
-import { SurveyRepository } from "../repositories/SurveyRepository";
+import beforeAllAndAfterAll from "./utils";
 
 describe("Surveys Tests", () => {
-  beforeAll(async () => {
-    const connection = await createConnection();
-    await connection.runMigrations();
-
-    const surveysRepository = getCustomRepository(SurveyRepository);
-    surveysRepository.delete({});
-  });
-
-  afterAll(async () => {
-    const connection = getConnection();
-    await connection.dropDatabase();
-    await connection.close();
-  });
+  beforeAllAndAfterAll();
 
   it("should be able to create a new Survey", async () => {
     const response = await request(server).post("/surveys").send({
