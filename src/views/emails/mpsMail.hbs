@@ -1,0 +1,75 @@
+{{!-- Esse arquivo com final hbs é referente ao handlebars que serve para conseguirmos fazer templates personalizados de
+email, a estrutura dele é em HTML e pode receber style, da mesma forma que o HTML normal, um benefício de utilizar o
+handlebars é que ele pode ser dinâmico, recebendo variáveis, para definir uma variável aqui basta usar a estrutura
+{{nomedavariável}} e depois fazer referência a ela quando for chamar o template na aplicação --}}
+
+<style>
+  .container {
+    width: 800px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .value {
+    padding: 10px;
+    background: #8257e6;
+    color: #fff;
+    border-radius: 6px;
+    width: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+
+  .level {
+    display: flex;
+    margin: 10px;
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .answers {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+
+<div class="container">
+  <label>Olá <strong>{{ name }}</strong>! Tudo bem?</label>
+
+  <h3>{{ title }}</h3>
+  <br />
+  <strong>{{ description }}</strong>
+
+  <div class="level">
+    <span>Pouco Provável</span>
+    <span>Muito Provável</span>
+  </div>
+
+  {{!-- Passamos os links como variáveis, que serão referencias a uma rota da nossa API, passando o link, a nota
+  referente ao botão e o id do usuário --}}
+  <div class="asnwers">
+    <a class="value" href="{{link}}/1?u={{id}}">1</a>
+    <a class="value" href="{{link}}/2?u={{id}}">2</a>
+    <a class="value" href="{{link}}/3?u={{id}}">3</a>
+    <a class="value" href="{{link}}/4?u={{id}}">4</a>
+    <a class="value" href="{{link}}/5?u={{id}}">5</a>
+    <a class="value" href="{{link}}/6?u={{id}}">6</a>
+    <a class="value" href="{{link}}/7?u={{id}}">7</a>
+    <a class="value" href="{{link}}/8?u={{id}}">8</a>
+    <a class="value" href="{{link}}/9?u={{id}}">9</a>
+    <a class="value" href="{{link}}/10?u={{id}}">10</a>
+  </div>
+
+  <br />
+  <br />
+
+  <strong>Sua opinião é muito importante para nós!</strong>
+  <h3>Equipe | <strong>NLW</strong></h3>
+</div>

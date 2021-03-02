@@ -1,5 +1,5 @@
 import request from "supertest";
-import { getCustomRepository } from "typeorm";
+import { getConnection, getCustomRepository } from "typeorm";
 import { server } from "../app";
 
 import createConnection from "../database";
@@ -12,6 +12,12 @@ describe("Users Tests", () => {
 
     const usersRepository = getCustomRepository(UserRepository);
     await usersRepository.delete({});
+  });
+
+  afterAll(async () => {
+    const connection = getConnection();
+    await connection.dropDatabase();
+    await connection.close();
   });
 
   it("should be able to create a new user", async () => {
